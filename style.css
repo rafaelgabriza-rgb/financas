@@ -1,0 +1,1199 @@
+/* =========================================================
+   MINHAS FINANÇAS — PREMIUM SAAS
+   ========================================================= */
+
+:root {
+    --background: #f4f5f7;
+
+    --surface: rgba(255, 255, 255, 0.88);
+
+    --text: #151515;
+    --text-secondary: #737373;
+    --text-tertiary: #a1a1a1;
+
+    --border: rgba(0, 0, 0, 0.075);
+    --border-strong: rgba(0, 0, 0, 0.11);
+
+    --green: #16a05d;
+    --green-dark: #087f48;
+
+    --red: #e5484d;
+    --red-dark: #c9343a;
+
+    --blue: #0071e3;
+
+    --radius-large: 24px;
+    --radius-small: 13px;
+
+    --shadow-card:
+        0 1px 2px rgba(0, 0, 0, 0.025),
+        0 10px 35px rgba(0, 0, 0, 0.035);
+
+    --shadow-hover:
+        0 1px 2px rgba(0, 0, 0, 0.025),
+        0 18px 45px rgba(0, 0, 0, 0.075);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Inter",
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(22, 160, 93, 0.08),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 92% 4%,
+            rgba(0, 113, 227, 0.055),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(22, 160, 93, 0.055),
+            transparent 30%
+        ),
+        #f4f5f7;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FUNDO
+   ========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 42px 42px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 80%
+        );
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 80%
+        );
+
+    opacity: 0.45;
+
+    z-index: -3;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 620px;
+    height: 620px;
+
+    top: -280px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(22, 160, 93, 0.105),
+            rgba(22, 160, 93, 0.045) 30%,
+            transparent 70%
+        );
+
+    filter: blur(15px);
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+    width: min(1120px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 62px 0 80px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.topo {
+    position: relative;
+
+    margin-bottom: 38px;
+
+    animation: aparecer 0.7s ease both;
+}
+
+.topo::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -100px;
+    top: -100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(22, 160, 93, 0.08),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+.topo h1 {
+    position: relative;
+
+    font-size: clamp(30px, 4vw, 42px);
+
+    font-weight: 700;
+
+    letter-spacing: -1.8px;
+
+    line-height: 1.05;
+
+    color: #111;
+}
+
+.topo p {
+    position: relative;
+
+    margin-top: 11px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CARDS DO TOPO
+   ========================================================= */
+
+.resumo {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+.card {
+    position: relative;
+
+    min-height: 150px;
+
+    padding: 24px;
+
+    border-radius: var(--radius-large);
+
+    overflow: hidden;
+
+    border: 1px solid transparent;
+
+    box-shadow: var(--shadow-card);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    animation: subir 0.65s ease both;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* =========================================================
+   REFLEXO DOS CARDS
+   ========================================================= */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -170px;
+    right: -110px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.5),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD — SALDO
+   ========================================================= */
+
+.card.saldo {
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(22, 160, 93, 0.42),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(255, 255, 255, 0.07),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #0c0c0c,
+            #181818 60%,
+            #101010
+        );
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.12),
+        0 20px 55px rgba(0, 0, 0, 0.15);
+}
+
+.card.saldo::after {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    right: -70px;
+    bottom: -90px;
+
+    border-radius: 50%;
+
+    background: rgba(22, 160, 93, 0.2);
+
+    filter: blur(25px);
+}
+
+
+/* =========================================================
+   CARD — GANHOS
+   ========================================================= */
+
+.card.ganhos {
+    color: #075f36;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(22, 160, 93, 0.32),
+            transparent 48%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(22, 160, 93, 0.12),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #f2fff8,
+            #e5f8ee
+        );
+
+    border-color: rgba(22, 160, 93, 0.22);
+
+    box-shadow:
+        0 1px 2px rgba(22, 160, 93, 0.04),
+        0 14px 38px rgba(22, 160, 93, 0.09);
+}
+
+.card.ganhos::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -55px;
+    bottom: -75px;
+
+    border-radius: 50%;
+
+    background: rgba(22, 160, 93, 0.18);
+
+    filter: blur(25px);
+}
+
+
+/* =========================================================
+   CARD — GASTOS
+   ========================================================= */
+
+.card.gastos {
+    color: #9d2228;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(229, 72, 77, 0.30),
+            transparent 48%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(229, 72, 77, 0.11),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #fff5f5,
+            #ffebec
+        );
+
+    border-color: rgba(229, 72, 77, 0.20);
+
+    box-shadow:
+        0 1px 2px rgba(229, 72, 77, 0.04),
+        0 14px 38px rgba(229, 72, 77, 0.08);
+}
+
+.card.gastos::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -55px;
+    bottom: -75px;
+
+    border-radius: 50%;
+
+    background: rgba(229, 72, 77, 0.16);
+
+    filter: blur(25px);
+}
+
+
+/* =========================================================
+   TEXTO DOS CARDS
+   ========================================================= */
+
+.card-label {
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 12px;
+
+    font-size: 13px;
+
+    font-weight: 550;
+
+    color: rgba(0, 0, 0, 0.48);
+}
+
+.card.saldo .card-label {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.card strong {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    font-size: clamp(25px, 3vw, 32px);
+
+    line-height: 1;
+
+    letter-spacing: -1.2px;
+
+    font-weight: 700;
+}
+
+
+/* Saldo */
+
+.card.saldo strong {
+    color: white;
+}
+
+
+/* Ganhos */
+
+.card.ganhos strong {
+    color: var(--green-dark);
+}
+
+
+/* Gastos */
+
+.card.gastos strong {
+    color: var(--red-dark);
+}
+
+
+/* =========================================================
+   PAINÉIS
+   ========================================================= */
+
+.painel {
+    position: relative;
+
+    background: var(--surface);
+
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+
+    border: 1px solid rgba(0, 0, 0, 0.075);
+
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-card);
+
+    padding: 25px;
+
+    margin-bottom: 14px;
+
+    overflow: hidden;
+
+    animation: subir 0.7s ease both;
+}
+
+.painel::before {
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 180px;
+
+    top: -160px;
+    right: 10%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(22, 160, 93, 0.07),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+.painel h2 {
+    position: relative;
+
+    font-size: 17px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.3px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+#form-financeiro {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(160px, 1.5fr)
+        minmax(120px, 0.8fr)
+        minmax(120px, 0.8fr)
+        minmax(130px, 0.8fr)
+        auto;
+
+    gap: 10px;
+
+    align-items: end;
+}
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.campo label {
+    font-size: 12px;
+
+    color: var(--text-secondary);
+
+    font-weight: 500;
+}
+
+input,
+select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border-strong);
+
+    border-radius: var(--radius-small);
+
+    background: rgba(255, 255, 255, 0.8);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input:hover,
+select:hover {
+    background: white;
+
+    border-color: rgba(0, 0, 0, 0.17);
+}
+
+input:focus,
+select:focus {
+    background: white;
+
+    border-color: rgba(0, 113, 227, 0.5);
+
+    box-shadow:
+        0 0 0 4px rgba(0, 113, 227, 0.08);
+}
+
+input::placeholder {
+    color: #a8a8a8;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+button {
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: var(--radius-small);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#form-financeiro button {
+    color: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1e1e1e,
+            #111
+        );
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.12);
+}
+
+#form-financeiro button:hover {
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================================
+   GRÁFICO
+   ========================================================= */
+
+.grafico-container {
+    position: relative;
+
+    width: 100%;
+
+    height: 390px;
+
+    padding-top: 5px;
+}
+
+.grafico-container::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7%;
+    right: 7%;
+
+    bottom: 18%;
+
+    height: 100px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(22, 160, 93, 0.055),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HISTÓRICO
+   ========================================================= */
+
+#lista-movimentacoes {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.movimentacao {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 15px 16px 15px 20px;
+
+    border: 1px solid transparent;
+
+    border-radius: 15px;
+
+    background: rgba(248, 248, 248, 0.7);
+
+    overflow: hidden;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.movimentacao:hover {
+    background: white;
+
+    border-color: var(--border);
+
+    transform: translateX(2px);
+}
+
+
+/* Barra verde */
+
+.movimentacao.ganho::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+
+    width: 3px;
+
+    border-radius: 0 5px 5px 0;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 12px rgba(22, 160, 93, 0.35);
+}
+
+
+/* Barra vermelha */
+
+.movimentacao.gasto::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+
+    width: 3px;
+
+    border-radius: 0 5px 5px 0;
+
+    background: var(--red);
+
+    box-shadow:
+        0 0 12px rgba(229, 72, 77, 0.3);
+}
+
+.movimentacao-info {
+    min-width: 0;
+}
+
+.movimentacao-descricao {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: var(--text);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.movimentacao-data {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: var(--text-tertiary);
+}
+
+.movimentacao-direita {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    flex-shrink: 0;
+}
+
+.movimentacao-valor {
+    font-size: 14px;
+
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+.movimentacao-valor.ganho {
+    color: var(--green-dark);
+}
+
+.movimentacao-valor.gasto {
+    color: var(--red-dark);
+}
+
+
+/* =========================================================
+   BOTÃO EXCLUIR
+   ========================================================= */
+
+.btn-excluir {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #999;
+
+    background: transparent;
+
+    border-radius: 9px;
+
+    font-size: 16px;
+}
+
+.btn-excluir:hover {
+    color: var(--red);
+
+    background: rgba(229, 72, 77, 0.08);
+}
+
+
+/* =========================================================
+   BOTÃO LIMPAR
+   ========================================================= */
+
+#limpar-tudo {
+    width: 100%;
+
+    margin-top: 13px;
+
+    color: #666;
+
+    background: rgba(0, 0, 0, 0.035);
+
+    border: 1px solid rgba(0, 0, 0, 0.055);
+
+    font-weight: 500;
+}
+
+#limpar-tudo:hover {
+    color: var(--red);
+
+    background: rgba(229, 72, 77, 0.08);
+
+    border-color: rgba(229, 72, 77, 0.12);
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+   ========================================================= */
+
+.vazio {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: var(--text-tertiary);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+
+    border: 3px solid transparent;
+
+    background-clip: padding-box;
+
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 3px solid transparent;
+
+    background-clip: padding-box;
+}
+
+
+/* =========================================================
+   SELEÇÃO
+   ========================================================= */
+
+::selection {
+    background: rgba(22, 160, 93, 0.18);
+
+    color: #111;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: min(100% - 28px, 720px);
+
+        padding-top: 40px;
+    }
+
+    .resumo {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card.saldo {
+        grid-column: 1 / -1;
+    }
+
+    #form-financeiro {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #form-financeiro button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                rgba(22, 160, 93, 0.075),
+                transparent 30%
+            ),
+            #f4f5f7;
+    }
+
+    body::before {
+        background-size: 32px 32px;
+
+        opacity: 0.25;
+    }
+
+    .container {
+        width: calc(100% - 22px);
+
+        padding: 28px 0 50px;
+    }
+
+    .topo {
+        margin-bottom: 27px;
+    }
+
+    .topo h1 {
+        font-size: 32px;
+
+        letter-spacing: -1.4px;
+    }
+
+    .topo p {
+        font-size: 14px;
+    }
+
+    .resumo {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .card {
+        min-height: 125px;
+
+        padding: 21px;
+    }
+
+    .card.saldo {
+        grid-column: auto;
+    }
+
+    .card strong {
+        font-size: 27px;
+    }
+
+    .painel {
+        padding: 18px;
+
+        border-radius: 20px;
+    }
+
+    #form-financeiro {
+        grid-template-columns: 1fr;
+    }
+
+    .grafico-container {
+        height: 280px;
+    }
+
+    .movimentacao {
+        padding: 13px 13px 13px 17px;
+
+        gap: 10px;
+    }
+
+    .movimentacao-direita {
+        gap: 7px;
+    }
+
+    .movimentacao-valor {
+        font-size: 13px;
+    }
+
+    .btn-excluir {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}

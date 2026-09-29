@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minhas Finanças</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca para o gráfico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="topo">
+            <div>
+                <h1>Minhas Finanças</h1>
+                <p>Controle seus ganhos e gastos</p>
+            </div>
+        </header>
+
+
+        <!-- RESUMO -->
+        <section class="resumo">
+
+            <div class="card saldo">
+                <span>Saldo</span>
+                <strong id="saldo">R$ 0,00</strong>
+            </div>
+
+            <div class="card ganho">
+                <span>Ganhos</span>
+                <strong id="ganhos">R$ 0,00</strong>
+            </div>
+
+            <div class="card gasto">
+                <span>Gastos</span>
+                <strong id="gastos">R$ 0,00</strong>
+            </div>
+
+        </section>
+
+
+        <!-- ADICIONAR MOVIMENTAÇÃO -->
+        <section class="painel">
+
+            <h2>Adicionar movimentação</h2>
+
+            <form id="form-financeiro">
+
+                <div class="campo">
+                    <label for="descricao">Descrição</label>
+                    <input
+                        type="text"
+                        id="descricao"
+                        placeholder="Ex: Mesada, lanche..."
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="valor">Valor</label>
+                    <input
+                        type="number"
+                        id="valor"
+                        placeholder="0,00"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="tipo">Tipo</label>
+
+                    <select id="tipo">
+                        <option value="ganho">Ganho</option>
+                        <option value="gasto">Gasto</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="data">Data</label>
+
+                    <input
+                        type="date"
+                        id="data"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Adicionar
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- GRÁFICO -->
+        <section class="painel">
+
+            <h2>Resumo financeiro</h2>
+
+            <div class="grafico-container">
+                <canvas id="grafico"></canvas>
+            </div>
+
+        </section>
+
+
+        <!-- HISTÓRICO -->
+        <section class="painel">
+
+            <div class="titulo-historico">
+                <h2>Movimentações</h2>
+
+                <button
+                    id="limpar-tudo"
+                    class="botao-perigo"
+                    type="button"
+                >
+                    Limpar tudo
+                </button>
+            </div>
+
+            <div id="lista-movimentacoes">
+
+                <p class="vazio">
+                    Nenhuma movimentação registrada.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
